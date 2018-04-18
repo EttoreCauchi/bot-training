@@ -11,7 +11,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
     [Serializable]
     public class EchoDialog : IDialog<object>
     {
-        protected int count = 2;
+        protected int count = 1;
 
         public async Task StartAsync(IDialogContext context)
         {
@@ -27,13 +27,13 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
                 PromptDialog.Confirm(
                     context,
                     AfterResetAsync,
-                    "Are you sure you want to reset the count?",
-                    "Didn't get that!",
+                    "Sei sicuro di voler resettare il contatore?",
+                    "Non ho capito!",
                     promptStyle: PromptStyle.Auto);
             }
             else
             {
-                await context.PostAsync($"{this.count++}: You said {message.Text}");
+                await context.PostAsync($"{this.count++}: Hai detto {message.Text}");
                 context.Wait(MessageReceivedAsync);
             }
         }
@@ -44,11 +44,11 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
             if (confirm)
             {
                 this.count = 1;
-                await context.PostAsync("Reset  count.");
+                await context.PostAsync("Contatore resettato.");
             }
             else
             {
-                await context.PostAsync("Did not reset count.");
+                await context.PostAsync("Contatore non resettato.");
             }
             context.Wait(MessageReceivedAsync);
         }
