@@ -11,7 +11,7 @@ namespace Microsoft.Bot.Sample.SimpleEchoBot
     [Serializable]
     public class EchoDialog : IDialog<object>
     {
-        protected int count = 1;
+        protected int count = 2;
 
         public async Task StartAsync(IDialogContext context)
         {
